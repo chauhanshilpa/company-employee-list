@@ -1,4 +1,4 @@
-import { ActionName } from "../action-names";
+import { ActionName, FieldName } from "../action-names";
 import { Employee } from "../../interfaces";
 
 interface Add {
@@ -21,11 +21,13 @@ interface Reset {
 }
 
 export type ActionType = Add | Edit | Delete | Reset;
-export interface FieldType {
+export interface FormField {
   type: string;
   payload: string;
 }
-export interface EditableField {
-  type: string;
-  payload: { isEditable: boolean; editableRowId: string };
+interface UpdateFormData {
+  type: FieldName.UPDATE_FORM_DATA;
+  payload: Employee;
 }
+
+export type FieldType = UpdateFormData | FormField;

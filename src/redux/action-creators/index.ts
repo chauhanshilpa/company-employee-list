@@ -59,15 +59,6 @@ export const addNewRecord = (newRecord: Employee) => {
   };
 };
 
-export const toggleEditableMode = (flag: boolean, rowId: string) => {
-  return (dispatch: Dispatch) => {
-    dispatch({
-      type: ActionName.EDITABLE_MODE,
-      payload: { isEditable: flag, editableRowId: rowId },
-    });
-  }
-}
-
 export const resetForm = () => {
   return (dispatch: Dispatch) =>{
     dispatch({
@@ -75,6 +66,15 @@ export const resetForm = () => {
     })
   }
 }
+
+export const updateFormData = (employee: Employee) => {
+  return (dispatch: Dispatch<FieldType>) => {
+    dispatch({
+      type: FieldName.UPDATE_FORM_DATA,
+      payload: employee,
+    });
+  };
+};
 
 export const updateEmployeeRecord = (newRecord: Employee) => {
   return (dispatch: Dispatch<ActionType>) => {

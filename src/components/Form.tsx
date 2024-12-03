@@ -14,14 +14,20 @@ const Form = () => {
     handleJoiningDateChange,
     handleMailChange,
     addNewRecord,
-    resetForm
+    updateEmployeeRecord,
+    resetForm,
   } = bindActionCreators(actionCreators, dispatch);
 
   const formData = useSelector((state: State) => state.formData.formData);
 
   const handleFormSubmit = (event: React.SyntheticEvent<HTMLFormElement>) => {
     event.preventDefault();
-    addNewRecord(formData);
+    if (formData.id) {
+      updateEmployeeRecord({ ...formData });
+    } else {
+      addNewRecord({ ...formData });
+    }
+    resetForm();
   };
 
   return (
@@ -157,7 +163,7 @@ const Form = () => {
                 <button
                   type="button"
                   className="text-md bg-blue-700 text-white focus:outline-none font-medium rounded-lg px-3 py-2 text-center ml-3 mt-5"
-                  onClick={()=>resetForm()}
+                  onClick={() => resetForm()}
                 >
                   Reset
                 </button>
