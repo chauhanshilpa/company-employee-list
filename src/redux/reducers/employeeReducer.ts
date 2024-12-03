@@ -1,5 +1,5 @@
 import { FieldName, ActionName } from "../action-names";
-import { ActionType, FieldType, EditableField } from "../action-type";
+import { ActionType, FieldType } from "../action-type";
 import { Employee } from "../../interfaces";
 import { v4 as uuidv4 } from "uuid";
 
@@ -57,6 +57,12 @@ export function formData(state = initialState, action: FieldType) {
           [action.type.toLowerCase()]: action.payload,
         },
       };
+
+    case FieldName.UPDATE_FORM_DATA:
+     return {
+       ...state,
+       formData: action.payload as Employee,
+     };
     case ActionName.RESET:
       return {
         ...state,
@@ -96,18 +102,3 @@ export function employeeReducer(state = initialState, action: ActionType) {
   }
 }
 
-export function editableRowReducer(
-  state = initialState,
-  action: EditableField
-) {
-  switch (action.type) {
-    case ActionName.EDITABLE_MODE:
-      return {
-        ...state,
-        isEditable: action.payload.isEditable,
-        editableRowId: action.payload.editableRowId,
-      };
-    default:
-      return state;
-  }
-}

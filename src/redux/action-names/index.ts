@@ -1,4 +1,5 @@
 export enum FieldName {
+  UPDATE_FORM_DATA = "updateForm",
   ID = "id",
   NAME = "name",
   GENDER = "gender",
@@ -8,7 +9,6 @@ export enum FieldName {
 }
 
 export enum ActionName {
-  EDITABLE_MODE = "isEditable",
   ADD = "add",
   EDIT = "edit",
   DELETE = "delete",
