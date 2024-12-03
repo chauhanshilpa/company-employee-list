@@ -19,17 +19,17 @@ const initialState: InitialState = {
   },
   employeeList: [
     {
-      id: "01",
+      id: "002",
       name: "Kritika",
-      gender: "female",
+      gender: "Female",
       department: "Marketing",
       date: "2023-04-15",
       mail: "kritika@gmail.com",
     },
     {
-      id: "02",
+      id: "001",
       name: "Pritam",
-      gender: "male",
+      gender: "Male",
       department: "Finance",
       date: "2021-06-19",
       mail: "pritam09@gmail.com",
@@ -54,10 +54,10 @@ export function formData(state = initialState, action: FieldType) {
       };
 
     case FieldName.UPDATE_FORM_DATA:
-     return {
-       ...state,
-       formData: action.payload as Employee,
-     };
+      return {
+        ...state,
+        formData: action.payload as Employee,
+      };
     case ActionName.RESET:
       return {
         ...state,
@@ -101,5 +101,3 @@ export function employeeReducer(state = initialState, action: ActionType) {
       return state;
   }
 }
-
-

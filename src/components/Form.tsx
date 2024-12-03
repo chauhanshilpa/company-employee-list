@@ -80,7 +80,7 @@ const Form = ({ formRef }: { formRef: React.RefObject<HTMLDivElement> }) => {
                     Select an option
                   </option>
                   {GENDER.map((gender, index) => (
-                    <option key={index} value={gender} className="capitalize">
+                    <option key={index} value={gender}>
                       {gender}
                     </option>
                   ))}
