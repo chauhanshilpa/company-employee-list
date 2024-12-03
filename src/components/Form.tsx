@@ -144,6 +144,7 @@ const Form = ({ formRef }: { formRef: React.RefObject<HTMLDivElement> }) => {
                   Email ID
                 </label>
                 <input
+                  required
                   type="email"
                   name="mail"
                   id="mail"
