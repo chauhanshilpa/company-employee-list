@@ -4,7 +4,7 @@ import { actionCreators } from "../redux";
 import { State } from "../redux/index";
 import { GENDER, DEPARTMENT } from "../constants";
 
-const Form = () => {
+const Form = ({ formRef }: { formRef: React.RefObject<HTMLDivElement> }) => {
   const dispatch = useDispatch();
 
   const {
@@ -31,7 +31,7 @@ const Form = () => {
   };
 
   return (
-    <section>
+    <section ref={formRef}>
       <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto z-10">
         <div className="w-full rounded-sm shadow dark:border md:mt-0 sm:max-w-md bg-[#030639] dark:border-gray-700">
           <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -55,7 +55,7 @@ const Form = () => {
                   type="text"
                   name="name"
                   id="employeeName"
-                  className="bg-[#F8EDED] border border-gray-400 focus:outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5"
+                  className="bg-[#F8EDED] border border-gray-400 focus:outline-none text-gray-900 text-sm rounded-lg block w-full p-2.5 capitalize"
                   placeholder="Enter Employee Name"
                   value={formData.name}
                   onChange={(event) => handleNameChange(event.target.value)}

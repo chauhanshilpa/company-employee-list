@@ -7,8 +7,16 @@ import { State } from "../redux/index";
 import { bindActionCreators } from "redux";
 import { actionCreators } from "../redux";
 
-const EmployeeDetails = () => {
+const EmployeeDetails = ({
+  formRef,
+}: {
+  formRef: React.RefObject<HTMLDivElement>;
+}) => {
   const [order, setOrder] = useState("descending");
+
+  const scrollToForm = () => {
+    formRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
 
   const dispatch = useDispatch();
 
@@ -16,10 +24,11 @@ const EmployeeDetails = () => {
     (state: State) => state.employee.employeeList
   );
 
-  const { reverseListOrder, updateFormData, deleteRecord } = bindActionCreators(
-    actionCreators,
-    dispatch
-  );
+  const {
+    reverseListOrder,
+    updateFormData,
+    deleteRecord,
+  } = bindActionCreators(actionCreators, dispatch);
 
   const handleEmployeeEdit = (id: string) => {
     const employee = employeeList.filter((employee) => employee.id === id)[0];
@@ -57,7 +66,10 @@ const EmployeeDetails = () => {
                 scope="col"
                 className="px-6 py-3 border border-black capitalize"
               >
-                <div className="flex gap-2 items-center capitalize">
+                <div
+                  className="flex gap-2 items-center capitalize"
+                  onClick={handleOrder}
+                >
                   <span>Gender</span>
                   <span>
                     {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
@@ -65,7 +77,10 @@ const EmployeeDetails = () => {
                 </div>
               </th>
               <th scope="col" className="px-6 py-3 border border-black">
-                <div className="flex gap-2 items-center capitalize">
+                <div
+                  className="flex gap-2 items-center capitalize"
+                  onClick={handleOrder}
+                >
                   <span>Department</span>
                   <span>
                     {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
@@ -73,7 +88,10 @@ const EmployeeDetails = () => {
                 </div>
               </th>
               <th scope="col" className="px-6 py-3 border border-black">
-                <div className="flex gap-2 items-center capitalize">
+                <div
+                  className="flex gap-2 items-center capitalize"
+                  onClick={handleOrder}
+                >
                   <span>Date of Joining</span>
                   <span>
                     {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
@@ -81,7 +99,10 @@ const EmployeeDetails = () => {
                 </div>
               </th>
               <th scope="col" className="px-6 py-3 border border-black">
-                <div className="flex gap-2 items-center capitalize">
+                <div
+                  className="flex gap-2 items-center capitalize"
+                  onClick={handleOrder}
+                >
                   <span>Email Id</span>
                   <span>
                     {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
@@ -133,7 +154,10 @@ const EmployeeDetails = () => {
                   <div className="flex gap-2">
                     <FaEdit
                       className="text-xl cursor-pointer"
-                      onClick={() => handleEmployeeEdit(employee.id)}
+                      onClick={() => {
+                        handleEmployeeEdit(employee.id);
+                        scrollToForm();
+                      }}
                     />
                     <MdOutlineDeleteOutline
                       className="text-xl cursor-pointer"

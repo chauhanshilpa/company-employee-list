@@ -1,16 +1,16 @@
 import { Dispatch } from "redux";
 import { FieldName, ActionName } from "../action-names";
 import { FieldType, ActionType } from "../action-type";
-import { Employee } from "../../interfaces"
+import { Employee } from "../../interfaces";
 
 export const handleNameChange = (value: string) => {
   return (dispatch: Dispatch<FieldType>) => {
-   dispatch({
-    type: FieldName.NAME,
-    payload: value
-   })
-  }
-}
+    dispatch({
+      type: FieldName.NAME,
+      payload: value,
+    });
+  };
+};
 
 export const handleGenderChange = (value: string) => {
   return (dispatch: Dispatch<FieldType>) => {
@@ -30,7 +30,6 @@ export const handleDepartmentChange = (value: string) => {
   };
 };
 
-
 export const handleJoiningDateChange = (value: string) => {
   return (dispatch: Dispatch<FieldType>) => {
     dispatch({
@@ -39,7 +38,6 @@ export const handleJoiningDateChange = (value: string) => {
     });
   };
 };
-
 
 export const handleMailChange = (value: string) => {
   return (dispatch: Dispatch<FieldType>) => {
@@ -62,18 +60,18 @@ export const addNewRecord = (newRecord: Employee) => {
 export const reverseListOrder = () => {
   return (dispatch: Dispatch) => {
     dispatch({
-      type: ActionName.REVERSE
-    })
-  }
+      type: ActionName.REVERSE,
+    });
+  };
 };
 
 export const resetForm = () => {
-  return (dispatch: Dispatch) =>{
+  return (dispatch: Dispatch) => {
     dispatch({
-      type: ActionName.RESET
-    })
-  }
-}
+      type: ActionName.RESET,
+    });
+  };
+};
 
 export const updateFormData = (employee: Employee) => {
   return (dispatch: Dispatch<FieldType>) => {

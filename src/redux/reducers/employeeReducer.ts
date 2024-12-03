@@ -4,15 +4,11 @@ import { Employee } from "../../interfaces";
 import { v4 as uuidv4 } from "uuid";
 
 interface InitialState {
-  isEditable: boolean;
-  editableRowId: string;
   formData: Employee;
   employeeList: Employee[];
 }
 
 const initialState: InitialState = {
-  isEditable: false,
-  editableRowId: "",
   formData: {
     id: "",
     name: "",
@@ -105,4 +101,5 @@ export function employeeReducer(state = initialState, action: ActionType) {
       return state;
   }
 }
+
 

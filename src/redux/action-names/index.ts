@@ -13,5 +13,5 @@ export enum ActionName {
   EDIT = "edit",
   DELETE = "delete",
   RESET = "reset",
-  REVERSE = "reverse"
+  REVERSE = "reverse",
 }
