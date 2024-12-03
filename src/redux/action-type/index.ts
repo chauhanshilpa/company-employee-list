@@ -20,7 +20,11 @@ interface Reset {
   type: ActionName.RESET;
 }
 
-export type ActionType = Add | Edit | Delete | Reset;
+interface Reverse {
+  type: ActionName.REVERSE;
+}
+
+export type ActionType = Add | Edit | Delete | Reset | Reverse;
 export interface FormField {
   type: string;
   payload: string;
@@ -30,4 +34,4 @@ interface UpdateFormData {
   payload: Employee;
 }
 
-export type FieldType = UpdateFormData | FormField;
+export type FieldType = UpdateFormData | FormField ;

@@ -59,6 +59,14 @@ export const addNewRecord = (newRecord: Employee) => {
   };
 };
 
+export const reverseListOrder = () => {
+  return (dispatch: Dispatch) => {
+    dispatch({
+      type: ActionName.REVERSE
+    })
+  }
+};
+
 export const resetForm = () => {
   return (dispatch: Dispatch) =>{
     dispatch({

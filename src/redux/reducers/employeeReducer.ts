@@ -21,7 +21,6 @@ const initialState: InitialState = {
     date: "",
     mail: "",
   },
-
   employeeList: [
     {
       id: "01",
@@ -96,6 +95,11 @@ export function employeeReducer(state = initialState, action: ActionType) {
         employeeList: state.employeeList.filter(
           (employee) => employee.id !== action.payload
         ),
+      };
+    case ActionName.REVERSE:
+      return {
+        ...state,
+        employeeList: state.employeeList.reverse(),
       };
     default:
       return state;
