@@ -1,4 +1,5 @@
-import { FaArrowUp, FaEdit } from "react-icons/fa";
+import { useState } from "react";
+import { FaArrowUp, FaArrowDown, FaEdit } from "react-icons/fa";
 import { MdOutlineDeleteOutline } from "react-icons/md";
 import { Employee } from "../interfaces";
 import { useSelector, useDispatch } from "react-redux";
@@ -7,13 +8,15 @@ import { bindActionCreators } from "redux";
 import { actionCreators } from "../redux";
 
 const EmployeeDetails = () => {
+  const [order, setOrder] = useState("descending");
+
   const dispatch = useDispatch();
 
   const employeeList = useSelector(
     (state: State) => state.employee.employeeList
   );
 
-  const { updateFormData, deleteRecord } = bindActionCreators(
+  const { reverseListOrder, updateFormData, deleteRecord } = bindActionCreators(
     actionCreators,
     dispatch
   );
@@ -21,6 +24,15 @@ const EmployeeDetails = () => {
   const handleEmployeeEdit = (id: string) => {
     const employee = employeeList.filter((employee) => employee.id === id)[0];
     updateFormData({ ...employee });
+  };
+
+  const handleOrder = () => {
+    if (order === "descending") {
+      setOrder("ascending");
+    } else {
+      setOrder("descending");
+    }
+    reverseListOrder();
   };
 
   return (
@@ -31,8 +43,14 @@ const EmployeeDetails = () => {
           <thead className="text-md text-black uppercase">
             <tr className="border border-black bg-[#00FFFF]">
               <th scope="col" className="px-6 py-3">
-                <div className="flex gap-2 items-center capitalize">
-                  Employee name <FaArrowUp />
+                <div
+                  className="flex gap-2 items-center capitalize"
+                  onClick={handleOrder}
+                >
+                  <span>Employee name</span>
+                  <span>
+                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                  </span>
                 </div>
               </th>
               <th
@@ -40,22 +58,34 @@ const EmployeeDetails = () => {
                 className="px-6 py-3 border border-black capitalize"
               >
                 <div className="flex gap-2 items-center capitalize">
-                  Gender <FaArrowUp />
+                  <span>Gender</span>
+                  <span>
+                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                  </span>
                 </div>
               </th>
               <th scope="col" className="px-6 py-3 border border-black">
                 <div className="flex gap-2 items-center capitalize">
-                  Department <FaArrowUp />
+                  <span>Department</span>
+                  <span>
+                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                  </span>
                 </div>
               </th>
               <th scope="col" className="px-6 py-3 border border-black">
                 <div className="flex gap-2 items-center capitalize">
-                  Date of Joining <FaArrowUp />
+                  <span>Date of Joining</span>
+                  <span>
+                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                  </span>
                 </div>
               </th>
               <th scope="col" className="px-6 py-3 border border-black">
                 <div className="flex gap-2 items-center capitalize">
-                  Email Id <FaArrowUp />
+                  <span>Email Id</span>
+                  <span>
+                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                  </span>
                 </div>
               </th>
               <th scope="col" className="px-6 py-3 border border-black">
