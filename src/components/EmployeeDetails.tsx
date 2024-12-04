@@ -12,7 +12,13 @@ const EmployeeDetails = ({
 }: {
   formRef: React.RefObject<HTMLDivElement>;
 }) => {
-  const [order, setOrder] = useState("descending");
+  const [order, setOrder] = useState({
+    name: "descending",
+    gender: "descending",
+    department: "descending",
+    date: "descending",
+    mail: "descending",
+  });
 
   const scrollToForm = () => {
     formRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -34,13 +40,20 @@ const EmployeeDetails = ({
     updateFormData({ ...employee });
   };
 
-  const handleOrder = (sortBy: string) => {
-    let tempOrder = order === "descending" ? "ascending" : "descending";
+  const handleOrder = (sortBy: keyof typeof order) => {
+    let orderOfKey  = order[sortBy];
+    let tempOrder = orderOfKey === "descending" ? "ascending" : "descending";
     sortList(sortBy, tempOrder);
-    if (order === "descending") {
-      setOrder("ascending");
+    if (orderOfKey === "descending") {
+      setOrder((prevOrder) => ({
+        ...prevOrder,
+        [sortBy]: "ascending",
+      }));
     } else {
-      setOrder("descending");
+       setOrder((prevOrder) => ({
+         ...prevOrder,
+         [sortBy]: "descending",
+       }));
     }
   };
 
@@ -58,7 +71,11 @@ const EmployeeDetails = ({
                 >
                   <span>Employee name</span>
                   <span>
-                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                    {order.name === "descending" ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
                   </span>
                 </div>
               </th>
@@ -72,7 +89,11 @@ const EmployeeDetails = ({
                 >
                   <span>Gender</span>
                   <span>
-                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                    {order.gender === "descending" ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
                   </span>
                 </div>
               </th>
@@ -83,7 +104,11 @@ const EmployeeDetails = ({
                 >
                   <span>Department</span>
                   <span>
-                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                    {order.department === "descending" ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
                   </span>
                 </div>
               </th>
@@ -94,7 +119,11 @@ const EmployeeDetails = ({
                 >
                   <span>Date of Joining</span>
                   <span>
-                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                    {order.date === "descending" ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
                   </span>
                 </div>
               </th>
@@ -105,7 +134,11 @@ const EmployeeDetails = ({
                 >
                   <span>Email Id</span>
                   <span>
-                    {order === "descending" ? <FaArrowUp /> : <FaArrowDown />}
+                    {order.mail === "descending" ? (
+                      <FaArrowUp />
+                    ) : (
+                      <FaArrowDown />
+                    )}
                   </span>
                 </div>
               </th>
