@@ -57,10 +57,11 @@ export const addNewRecord = (newRecord: Employee) => {
   };
 };
 
-export const reverseListOrder = () => {
+export const sortList = (sortBy: string, order: string) => {
   return (dispatch: Dispatch) => {
     dispatch({
-      type: ActionName.REVERSE,
+      type: ActionName.SORT,
+      payload: { sortBy: sortBy, order: order },
     });
   };
 };

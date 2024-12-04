@@ -24,24 +24,24 @@ const EmployeeDetails = ({
     (state: State) => state.employee.employeeList
   );
 
-  const {
-    reverseListOrder,
-    updateFormData,
-    deleteRecord,
-  } = bindActionCreators(actionCreators, dispatch);
+  const { sortList, updateFormData, deleteRecord } = bindActionCreators(
+    actionCreators,
+    dispatch
+  );
 
   const handleEmployeeEdit = (id: string) => {
     const employee = employeeList.filter((employee) => employee.id === id)[0];
     updateFormData({ ...employee });
   };
 
-  const handleOrder = () => {
+  const handleOrder = (sortBy: string) => {
+    let tempOrder = order === "descending" ? "ascending" : "descending";
+    sortList(sortBy, tempOrder);
     if (order === "descending") {
       setOrder("ascending");
     } else {
       setOrder("descending");
     }
-    reverseListOrder();
   };
 
   return (
@@ -54,7 +54,7 @@ const EmployeeDetails = ({
               <th scope="col" className="px-6 py-3">
                 <div
                   className="flex gap-2 items-center capitalize"
-                  onClick={handleOrder}
+                  onClick={() => handleOrder("name")}
                 >
                   <span>Employee name</span>
                   <span>
@@ -68,7 +68,7 @@ const EmployeeDetails = ({
               >
                 <div
                   className="flex gap-2 items-center capitalize"
-                  onClick={handleOrder}
+                  onClick={() => handleOrder("gender")}
                 >
                   <span>Gender</span>
                   <span>
@@ -79,7 +79,7 @@ const EmployeeDetails = ({
               <th scope="col" className="px-6 py-3 border border-black">
                 <div
                   className="flex gap-2 items-center capitalize"
-                  onClick={handleOrder}
+                  onClick={() => handleOrder("department")}
                 >
                   <span>Department</span>
                   <span>
@@ -90,7 +90,7 @@ const EmployeeDetails = ({
               <th scope="col" className="px-6 py-3 border border-black">
                 <div
                   className="flex gap-2 items-center capitalize"
-                  onClick={handleOrder}
+                  onClick={() => handleOrder("date")}
                 >
                   <span>Date of Joining</span>
                   <span>
@@ -101,7 +101,7 @@ const EmployeeDetails = ({
               <th scope="col" className="px-6 py-3 border border-black">
                 <div
                   className="flex gap-2 items-center capitalize"
-                  onClick={handleOrder}
+                  onClick={() => handleOrder("mail")}
                 >
                   <span>Email Id</span>
                   <span>

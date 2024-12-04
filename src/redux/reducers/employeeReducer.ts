@@ -92,10 +92,33 @@ export function employeeReducer(state = initialState, action: ActionType) {
           (employee) => employee.id !== action.payload
         ),
       };
-    case ActionName.REVERSE:
+    case ActionName.SORT:
+      let sortedList;
+      const param = action.payload.sortBy as keyof Employee;
+      if (action.payload.order === "descending") {
+        if (param === "date") {
+          sortedList = [...state.employeeList].sort(
+            (a, b) => new Date(a.date).getTime() - new Date(b.date).getTime()
+          );
+        } else {
+          sortedList = [...state.employeeList].sort((a, b) =>
+            b[param].localeCompare(a[param])
+          );
+        }
+      } else {
+        if (param === "date") {
+          sortedList = [...state.employeeList].sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          );
+        } else {
+          sortedList = [...state.employeeList].sort((a, b) =>
+            a[param].localeCompare(b[param])
+          );
+        }
+      }
       return {
         ...state,
-        employeeList: state.employeeList.reverse(),
+        employeeList: sortedList,
       };
     default:
       return state;

@@ -20,11 +20,15 @@ interface Reset {
   type: ActionName.RESET;
 }
 
-interface Reverse {
-  type: ActionName.REVERSE;
+interface Sort {
+  type: ActionName.SORT;
+  payload: {
+    sortBy: string;
+    order: string;
+  };
 }
 
-export type ActionType = Add | Edit | Delete | Reset | Reverse;
+export type ActionType = Add | Edit | Delete | Reset | Sort;
 export interface FormField {
   type: string;
   payload: string;
